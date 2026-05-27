@@ -1,19 +1,33 @@
 <?php
-$string_conexao= "pgsql:host=localhost; port=5432; dbname=bd_sql_parte1; user=postgres; password=postgres";
-
-try{
-    $conn = new PDO($string_conexao);
-}catch(PDOExpection$e){
-    echo "Serviço indisponível, tente novamente mais tarde";
-    exit;
-}
-$varSQl="SELECT*FROM auluno";
-$select= $conn -> query($varSQl);
+include ("funcao.php");
+$conn = conecta();
+$varSQl="SELECT*FROM aluno WHERE sexo = :sexo";
+$sexo = $_POST['sexo'];
+$select= $conn -> prepare($varSQl);
+$select->bindParam(":sexo",$sexo);
+$select->execute();
+echo "<link rel='stylesheet' href='style.css'>";
+echo "<table class= tabela border =1>";
+echo "<tr>";
+echo "<th>ID</th>";
+echo "<th>NOME</th>";
+echo "<th>TELEFONE </th>";
+echo"<th>SEXO</th>";
+echo"<th>TURMA</th>";
+echo "<th>Editar</th>";
+echo "</tr>";
 
 while($linha= $select->fetch()){
-    echo $linha['nome']."<br>";
-    echo"<a href='mostra.php?id=".$linha['id_aluno']."'>Clique para editar</a><br>";
+    echo "<tr>";
+    echo "<td >".$linha['id_aluno']."</td>";
+    echo "<td >".$linha['nome']."</td>";
+    echo "<td >".$linha['telefone']."</td>";
+    echo "<td>".$linha['sexo']."</td>";
+    echo "<td>".$linha['turma']."</td>";
+    echo" <td> <a href='editar.php'> <img src= './lapis.png' alt= 'editar'> </a></td>";
+    echo "</tr>";
 }
+echo "</table>";
 
 
 
