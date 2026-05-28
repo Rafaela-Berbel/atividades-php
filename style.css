@@ -1,14 +1,23 @@
 img{
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px;
+    transition: transform 0.3s ease;
 }
-
+img:hover{
+    transform: scale(1.1);
+}
 body{
     display: flex;
     justify-content: center;
     margin-top: 50px;
     align-items: flex-start;
     background-color: #f5d0df;
+}
+.tabela{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
 }
 
 table{
@@ -31,5 +40,26 @@ th{
 tr:nth-child(even){
     background-color: #ffe4ec;
 }
-
+td a{
+    display: inline-flex;
+    padding: 5px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease;
+}
+td a:hover{
+    background-color: #f5d0df;
+}
+.btn{
+    color: #f5d0df;
+    background-color: #c2185b;
+    padding: 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.btn:hover{
+    transform: scale(1.04) ;
+    background-color: #f03882;
+    color: white;
+}
 
